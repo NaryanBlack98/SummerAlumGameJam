@@ -7,11 +7,12 @@ public class ZombeAI : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody rb;
-    public float zomSpeed = 100;
+    public float zomSpeed = 130;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

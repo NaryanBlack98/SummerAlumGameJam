@@ -10,12 +10,17 @@ public class PlayerController : MonoBehaviour
     public float craftRange = 2;
     public float reloadTime = 1.5f;
     public float fireDelay = 0.2f;
+    public float craftDelay = 2f;
     public int ammoCap = 6;
+    public int wood = 0;
+    public GameObject cratePrefab; // set in editor
 
+    private GameObject ghostCrate;
     private Rigidbody rb;
     private GameObject spriteHolder;
     private int ammo;
     private bool shooting = false;
+    private bool crafting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         spriteHolder = GetComponentInChildren<Collider>().gameObject;
         ammo = ammoCap;
+        ghostCrate = GetComponentInChildren<Crate>().gameObject;
     }
 
     // Update is called once per frame
@@ -61,9 +67,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Crafting
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            Craft();
+            if (!crafting) Craft();
         }
 
     }
@@ -72,17 +78,29 @@ public class PlayerController : MonoBehaviour
     {
         Collider[] trees = Physics.OverlapSphere(transform.position, craftRange, LayerMask.GetMask("Tree"));
 
-        if (trees.Length == 0)
+        if (trees.Length == 0 && wood > 0)
         {
-
-        } else
+            if (ghostCrate.activeSelf)
+            {
+                Instantiate(cratePrefab, ghostCrate.transform.position, ghostCrate.transform.rotation);
+                wood--;
+                ghostCrate.SetActive(false);
+            } else
+            {
+                ghostCrate.SetActive(true);
+            }
+        } else if (trees.Length > 0)
         {
-
+            GameObject.Destroy(trees[0].gameObject);
+            crafting = true;
+            StartCoroutine("LimitCraftRate");
         }
     }
     
     private void Shoot()
     {
+        ghostCrate.SetActive(false);
+
         Collider[] inRange = Physics.OverlapSphere(transform.position, gunRange, LayerMask.GetMask("Zombe"));
 
         if (inRange.Length > 0)
@@ -123,6 +141,13 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(fireDelay);
         shooting = false;
+    }
+
+    private IEnumerator LimitCraftRate()
+    {
+        yield return new WaitForSeconds(craftDelay);
+        wood++;
+        crafting = false;
     }
 
     private void OnDrawGizmos()
