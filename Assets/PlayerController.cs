@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
+    private GameObject spriteHolder;
     public float speed = 20;
     public float range = 17;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        spriteHolder = GetComponentInChildren<BoxCollider>().gameObject;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 if (closest != null) GameObject.Destroy(closest);
-                transform.LookAt(closest.transform.position);
+                spriteHolder.transform.LookAt(closest.transform.position);
             }
 
 
