@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float reloadTime = 1.5f;
     public float fireDelay = 0.2f;
     public int ammoCap = 6;
+    public int wood = 0;
 
     private Rigidbody rb;
     private GameObject spriteHolder;
