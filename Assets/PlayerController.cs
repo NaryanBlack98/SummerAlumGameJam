@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // Shoot
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            Collider[] inRange = Physics.OverlapSphere(transform.position, range, 11);
+            Collider[] inRange = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Zombe"));
 
             if (inRange.Length > 0) {
                 GameObject closest = inRange[0].gameObject;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 if (closest != null) GameObject.Destroy(closest);
+                transform.LookAt(closest.transform.position);
             }
 
 
@@ -69,6 +70,10 @@ public class PlayerController : MonoBehaviour
             
         }
 
+    }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
