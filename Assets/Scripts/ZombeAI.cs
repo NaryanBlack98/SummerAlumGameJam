@@ -12,6 +12,7 @@ public class ZombeAI : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
