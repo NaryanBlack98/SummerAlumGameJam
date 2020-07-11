@@ -7,7 +7,7 @@ public class ZombeAI : MonoBehaviour
 {
     public GameObject player;
     private Rigidbody rb;
-    public float zomSpeed = 80;
+    public float zomSpeed = 100;
 
     private void Start()
     {
