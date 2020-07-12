@@ -8,11 +8,13 @@ public class ZombeManager : MonoBehaviour
     public GameObject player;
     public int totalWaves = 0;
     public float spawnDist = 30;
+    private Collider myCollider;
     private float timeBetweenWaves = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
+        myCollider = GetComponent<Collider>();
         DontDestroyOnLoad(gameObject);
         StartCoroutine("waveTimer");
     }

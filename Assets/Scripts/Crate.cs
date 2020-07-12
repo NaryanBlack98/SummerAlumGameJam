@@ -52,8 +52,8 @@ public class Crate : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
-            if (Physics.OverlapSphere(transform.position, 1.5f, LayerMask.GetMask("Zombe")).Length > 2) GameObject.Destroy(gameObject);
+            yield return new WaitForSeconds(1.5f);
+            if (Physics.OverlapSphere(transform.position, 1.8f, LayerMask.GetMask("Zombe")).Length > 2) GameObject.Destroy(gameObject);
         }
     }
 }

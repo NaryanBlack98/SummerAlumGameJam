@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DisplayScore : MonoBehaviour
 {
-    TextMesh t;
+    TextMeshProUGUI t;
     // Start is called before the first frame update
     void Start()
     {
         ZombeManager zomMan = GameObject.Find("ZombeManager").GetComponent<ZombeManager>();
-        t = GetComponent<TextMesh>();
+        t = GetComponent<TextMeshProUGUI>();
         t.text += " " + zomMan.totalWaves;
         GameObject.Destroy(zomMan.gameObject);
     }
