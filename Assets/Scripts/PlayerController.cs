@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
         spriteHolder = GetComponentInChildren<Collider>().gameObject;
         ammo = ammoCap;
         ghostCrate = GetComponentInChildren<Crate>().gameObject;
+        ghostCrate.SetActive(false);
     }
 
     // Update is called once per frame
