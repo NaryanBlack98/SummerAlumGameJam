@@ -1437,10 +1437,10 @@ MonoBehaviour:
   - {fileID: 1199841449932587709, guid: a60e0dfd1f119c0478dbad9095f9aa74, type: 3}
   spawnPos: {fileID: 2629949940779287661, guid: 5b38af82617075f4294d4ad0905f5590,
     type: 3}
-  spawnTime: 20
-  spawnDelay: 20
+  spawnTime: 15
+  spawnDelay: 15
   clone: {fileID: 0}
-  despawnDelay: 20
+  despawnDelay: 15
 --- !u!1001 &974702939
 PrefabInstance:
   m_ObjectHideFlags: 0
