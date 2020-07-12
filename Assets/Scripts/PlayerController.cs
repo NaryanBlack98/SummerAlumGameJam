@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
         spriteHolder = GetComponentInChildren<Collider>().gameObject;
         ammo = ammoCap;
         ghostCrate = GetComponentInChildren<Crate>().gameObject;
+        ghostCrate.SetActive(false);
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
             {
                 ghostCrate.SetActive(true);
             }
-        } else if (trees.Length > 0)
+        } else if (trees.Length > 0 && !ghostCrate.activeSelf)
         {
             GameObject.Destroy(trees[0].gameObject);
             crafting = true;
