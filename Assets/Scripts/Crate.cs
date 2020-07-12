@@ -36,6 +36,10 @@ public class Crate : MonoBehaviour
         else
         {
             // Crate logic
+            if (health == 0)
+            {
+                GameObject.Destroy(gameObject);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ public class ZombeManager : MonoBehaviour
 
     private IEnumerator waveTimer()
     {
-        int toSpawn = 5;
+        int toSpawn = 3;
         while (player)
         {
             SpawnZombes(toSpawn);
