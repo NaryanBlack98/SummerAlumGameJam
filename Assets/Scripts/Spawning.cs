@@ -19,7 +19,7 @@ public class Spawning : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnObject", spawnTime, spawnDelay  );
-        InvokeRepeating("DestroyObjectDelayed", spawnTime+5, despawnDelay);
+        InvokeRepeating("DestroyObjectDelayed", spawnTime+15 , despawnDelay);
     }
 
     public void SpawnObject()
