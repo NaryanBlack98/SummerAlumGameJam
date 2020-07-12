@@ -9,6 +9,11 @@ public class Crate : MonoBehaviour
     [SerializeField]
     private float offset = 1.76f;
 
+    private void Start()
+    {
+        StartCoroutine("CheckForTooMany");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +45,15 @@ public class Crate : MonoBehaviour
             {
                 GameObject.Destroy(gameObject);
             }
+        }
+    }
+
+    private IEnumerator CheckForTooMany()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (Physics.OverlapSphere(transform.position, 1.5f, LayerMask.GetMask("Zombe")).Length > 2) GameObject.Destroy(gameObject);
         }
     }
 }

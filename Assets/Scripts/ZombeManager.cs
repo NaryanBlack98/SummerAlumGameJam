@@ -13,6 +13,7 @@ public class ZombeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         StartCoroutine("waveTimer");
     }
 
@@ -36,6 +37,9 @@ public class ZombeManager : MonoBehaviour
             toSpawn++;
             totalWaves++;
         }
-
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 }
